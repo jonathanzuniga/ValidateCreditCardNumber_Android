@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.Timers;
-//using Android.Runtime;
 using Android.Content;
 using Android.Util;
+using Android.App;
 
 namespace ValidateCreditCardNumber_Android
 {
@@ -20,7 +20,6 @@ namespace ValidateCreditCardNumber_Android
 			set { _timerAnimate.Interval = value; }
 		}
 
-//		protected DecodeTextView(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
 		public DecodeTextView(Context c, IAttributeSet args) : base(c, args)
 		{
 			_timerAnimate.Interval = 100;
@@ -38,20 +37,22 @@ namespace ValidateCreditCardNumber_Android
 
 		private void _timerAnimate_Tick(object sender, EventArgs e)
 		{
-			if (_initGenCount != 0) {
-				Text = _decodeEffect.GenerateNumberRange (Text.Length);
-				_initGenCount--;
-				return;
-			}
+			(Context as Activity).RunOnUiThread(() => {
+				if (_initGenCount != 0) {
+					Text = _decodeEffect.GenerateNumberRange (Text.Length);
+					_initGenCount--;
+					return;
+				}
 
-			var decodeMode = _showing ? DecodeMode.Show : DecodeMode.Hide;
-			var text = _decodeEffect.Peek (decodeMode);
+				var decodeMode = _showing ? DecodeMode.Show : DecodeMode.Hide;
+				var text = _decodeEffect.Peek (decodeMode);
 
-			if (text == null) {
-				_timerAnimate.Stop ();
-			} else {
-				Text = text;
-			}
+				if (text == null) {
+					_timerAnimate.Stop ();
+				} else {
+					Text = text;
+				}
+			});
 		}
 	}
 
