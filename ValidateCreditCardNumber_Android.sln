@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidateCreditCardNumber_Android", "ValidateCreditCardNumber_Android\ValidateCreditCardNumber_Android.csproj", "{215258FC-98B7-4A30-9977-C7B501590141}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidateCreditCardNumber_Android.UITests", "ValidateCreditCardNumber_Android.UITests\ValidateCreditCardNumber_Android.UITests.csproj", "{C2566C6F-45C3-43B5-AF75-FDC1147317F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{215258FC-98B7-4A30-9977-C7B501590141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{215258FC-98B7-4A30-9977-C7B501590141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{215258FC-98B7-4A30-9977-C7B501590141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{215258FC-98B7-4A30-9977-C7B501590141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2566C6F-45C3-43B5-AF75-FDC1147317F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2566C6F-45C3-43B5-AF75-FDC1147317F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2566C6F-45C3-43B5-AF75-FDC1147317F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2566C6F-45C3-43B5-AF75-FDC1147317F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
