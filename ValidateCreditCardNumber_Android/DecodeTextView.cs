@@ -24,6 +24,8 @@ namespace ValidateCreditCardNumber_Android
 		{
 			_timerAnimate.Interval = 100;
 			_timerAnimate.Elapsed += _timerAnimate_Tick;
+
+//			Console.WriteLine ("DecodeTextView executing on thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
 		}
 
 		public void AnimateText(bool show, string text, int initGenCount)
@@ -37,22 +39,26 @@ namespace ValidateCreditCardNumber_Android
 
 		private void _timerAnimate_Tick(object sender, EventArgs e)
 		{
-			(Context as Activity).RunOnUiThread(() => {
-				if (_initGenCount != 0) {
+			if (_initGenCount != 0) {
+				Post (() => {
 					Text = _decodeEffect.GenerateNumberRange (Text.Length);
-					_initGenCount--;
-					return;
-				}
+				});
+				_initGenCount--;
+				return;
+			}
 
-				var decodeMode = _showing ? DecodeMode.Show : DecodeMode.Hide;
-				var text = _decodeEffect.Peek (decodeMode);
+			var decodeMode = _showing ? DecodeMode.Show : DecodeMode.Hide;
+			var text = _decodeEffect.Peek (decodeMode);
 
-				if (text == null) {
-					_timerAnimate.Stop ();
-				} else {
+			if (text == null) {
+				_timerAnimate.Stop ();
+			} else {
+				Post (() => {
 					Text = text;
-				}
-			});
+				});
+			}
+
+//			Console.WriteLine ("_timerAnimate_Tick executing on thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
 		}
 	}
 
